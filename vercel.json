@@ -1,1 +1,5 @@
-{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}
+{
+  "rewrites": [
+    { "source": "/((?!receipts.json|assets/.*|vite.svg).*)", "destination": "/index.html" }
+  ]
+}
