@@ -43,21 +43,21 @@ export const ReceiptCard = memo(function ReceiptCard({ receipt, onSelect, highli
                   {meta.label}
                 </span>
                 {receipt._synthetic ? (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] rounded-full bg-slate-800/60 text-slate-400 border border-slate-700/50">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] rounded-full theme-surface-raised theme-text-secondary border theme-border">
                     <Sparkles className="w-3 h-3" aria-hidden /> synthetic
                   </span>
                 ) : null}
-                <time className="text-xs text-slate-500 tabular-nums" dateTime={receipt.timestamp}>
+                <time className="text-xs theme-text-muted tabular-nums" dateTime={receipt.timestamp}>
                   {formatTime(receipt.timestamp)}
                 </time>
               </div>
-              <h3 className="mt-0.5 text-sm sm:text-base font-medium text-slate-100 truncate">{receipt.title}</h3>
+              <h3 className="mt-0.5 text-sm sm:text-base font-medium theme-text-primary truncate">{receipt.title}</h3>
               {receipt.description ? (
-                <p className="mt-1 text-xs sm:text-sm text-slate-400 line-clamp-2">{receipt.description}</p>
+                <p className="mt-1 text-xs sm:text-sm theme-text-secondary line-clamp-2">{receipt.description}</p>
               ) : null}
             </div>
             {typeof receipt.amount === 'number' ? (
-              <div className="flex-shrink-0 flex items-center gap-0.5 text-slate-200 text-sm font-semibold tabular-nums">
+              <div className="flex-shrink-0 flex items-center gap-0.5 theme-text-primary text-sm font-semibold tabular-nums">
                 <IndianRupee className="w-3.5 h-3.5" aria-hidden />
                 {receipt.amount.toFixed(receipt.amount % 1 === 0 ? 0 : 2)}
               </div>
@@ -66,16 +66,16 @@ export const ReceiptCard = memo(function ReceiptCard({ receipt, onSelect, highli
           <div className="mt-2 flex items-center gap-2 flex-wrap">
             {receipt.tags && receipt.tags.length > 0 ? (
               <div className="flex items-center gap-1 flex-wrap">
-                <Tag className="w-3 h-3 text-slate-500" aria-hidden />
+                <Tag className="w-3 h-3 theme-text-muted" aria-hidden />
                 {receipt.tags.slice(0, 4).map(t => (
-                  <span key={t} className="px-1.5 py-0.5 text-[10px] rounded bg-slate-800/60 text-slate-300 border border-slate-700/40">
+                  <span key={t} className="px-1.5 py-0.5 text-[10px] rounded theme-surface-raised theme-text-secondary border theme-border">
                     {t}
                   </span>
                 ))}
               </div>
             ) : null}
             {receipt.location?.name ? (
-              <div className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] rounded bg-slate-800/60 text-slate-300 border border-slate-700/40">
+              <div className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] rounded theme-surface-raised theme-text-secondary border theme-border">
                 <MapIcon className="w-3 h-3" aria-hidden />
                 <span>{receipt.location.name}</span>
               </div>

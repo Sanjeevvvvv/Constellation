@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  --theme-background: #f8fafc;
+  --theme-background-deep: #eef2ff;
+  --theme-surface: #ffffff;
+  --theme-surface-muted: #f1f5f9;
+  --theme-surface-raised: #e2e8f0;
+  --theme-border: #cbd5e1;
+  --theme-border-strong: #94a3b8;
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #475569;
+  --theme-text-muted: #64748b;
+}
+
+.dark {
+  color-scheme: dark;
+  --theme-background: #020617;
+  --theme-background-deep: #0f172a;
+  --theme-surface: #0f172a;
+  --theme-surface-muted: #111827;
+  --theme-surface-raised: #1e293b;
+  --theme-border: #1e293b;
+  --theme-border-strong: #334155;
+  --theme-text-primary: #f1f5f9;
+  --theme-text-secondary: #cbd5e1;
+  --theme-text-muted: #64748b;
+}
+
 html, body, #root {
   height: 100%;
 }
@@ -11,8 +39,59 @@ body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #020617;
+  background-color: var(--theme-background);
+  color: var(--theme-text-primary);
 }
+
+@layer components {
+  .theme-page {
+    background-color: var(--theme-background);
+    color: var(--theme-text-primary);
+  }
+  .theme-surface {
+    background-color: var(--theme-surface);
+  }
+  .theme-surface-muted {
+    background-color: var(--theme-surface-muted);
+  }
+  .theme-surface-raised {
+    background-color: var(--theme-surface-raised);
+  }
+  .theme-border {
+    border-color: var(--theme-border);
+  }
+  .theme-border-strong {
+    border-color: var(--theme-border-strong);
+  }
+  .theme-text-primary {
+    color: var(--theme-text-primary);
+  }
+  .theme-text-secondary {
+    color: var(--theme-text-secondary);
+  }
+  .theme-text-muted {
+    color: var(--theme-text-muted);
+  }
+}
+
+  :root:not(.dark) [class*="bg-slate-"] {
+    background-color: var(--theme-surface-muted) !important;
+  }
+
+  :root:not(.dark) [class*="text-slate-100"],
+  :root:not(.dark) [class*="text-slate-200"],
+  :root:not(.dark) [class*="text-slate-300"] {
+    color: var(--theme-text-primary) !important;
+  }
+
+  :root:not(.dark) [class*="text-slate-400"],
+  :root:not(.dark) [class*="text-slate-500"] {
+    color: var(--theme-text-secondary) !important;
+  }
+
+  :root:not(.dark) [class*="border-slate-"] {
+    border-color: var(--theme-border) !important;
+  }
 
 @layer utilities {
   .line-clamp-2 {
@@ -43,13 +122,13 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--theme-border);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: var(--theme-border-strong);
   background-clip: content-box;
   border: 2px solid transparent;
 }

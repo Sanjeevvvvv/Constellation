@@ -1,11 +1,20 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { Lightbulb, Sparkles } from 'lucide-react';
 import { useReceiptsContext } from '../context/useReceiptsContext';
+import { LifeSummaryCard } from '../components/LifeSummaryCard';
 import { ReceiptCard } from '../components/ReceiptCard';
 import { receiptsForMoment } from '../selectors';
+import { celebrateFavoriteMilestone } from '../utils/celebrate';
 
 export const StoryTimeline = memo(function StoryTimeline() {
   const { timelineGroups, filteredReceipts, surpriseMomentId, moments, receipts, favoritedMomentIds, toggleFavoriteMoment } = useReceiptsContext();
+  const previousFavoriteCount = useRef(favoritedMomentIds.length);
+
+  useEffect(() => {
+    const crossedMilestone = previousFavoriteCount.current < 5 && favoritedMomentIds.length >= 5;
+    previousFavoriteCount.current = favoritedMomentIds.length;
+    if (crossedMilestone) celebrateFavoriteMilestone();
+  }, [favoritedMomentIds.length]);
 
   if (filteredReceipts.length === 0) {
     return (
@@ -26,6 +35,7 @@ export const StoryTimeline = memo(function StoryTimeline() {
 
   return (
     <div className="space-y-10">
+      <LifeSummaryCard />
       {surpriseMoment ? (
         <aside
           aria-label="Surprise connection"

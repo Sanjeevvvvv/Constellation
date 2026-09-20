@@ -23,13 +23,13 @@ export const FilterControls = memo(function FilterControls() {
   return (
     <section aria-label="Filter controls" className="space-y-3">
       <div className="flex items-center gap-2">
-        <Filter className="w-4 h-4 text-slate-400" aria-hidden />
-        <h2 className="text-sm font-semibold text-slate-300">Filters</h2>
+        <Filter className="w-4 h-4 theme-text-secondary" aria-hidden />
+        <h2 className="text-sm font-semibold theme-text-secondary">Filters</h2>
         {hasAny ? (
           <button
             type="button"
             onClick={resetFilters}
-            className="ml-auto inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-slate-100 hover:bg-slate-800/60 border border-slate-700/60 focus:outline-none focus:ring-2 focus:ring-indigo-400/60 min-h-[44px]"
+            className="ml-auto inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium theme-text-secondary hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/70 dark:hover:bg-slate-800/60 border theme-border-strong focus:outline-none focus:ring-2 focus:ring-indigo-400/60 min-h-[44px]"
           >
             <RotateCcw className="w-3.5 h-3.5" aria-hidden /> Reset
           </button>
@@ -37,7 +37,7 @@ export const FilterControls = memo(function FilterControls() {
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="text-xs font-medium text-slate-400 mb-1">Categories</legend>
+        <legend className="text-xs font-medium theme-text-secondary mb-1">Categories</legend>
         <div className="flex flex-wrap gap-1.5">
           {ALL_CATEGORIES.map(cat => {
             const meta = categoryMeta(cat);
@@ -50,7 +50,7 @@ export const FilterControls = memo(function FilterControls() {
                 onClick={() => toggleCategory(cat)}
                 aria-pressed={active}
                 aria-label={`Filter by ${meta.label}${active ? ' — active' : ''}`}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition focus:outline-none focus:ring-2 focus:ring-indigo-400/60 min-h-[40px] ${active ? `${meta.bg} ${meta.text} ${meta.border}` : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'}`}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition focus:outline-none focus:ring-2 focus:ring-indigo-400/60 min-h-[40px] ${active ? `${meta.bg} ${meta.text} ${meta.border}` : 'theme-surface-muted theme-text-secondary theme-border hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-400 dark:hover:border-slate-700'}`}
               >
                 <Icon className="w-3.5 h-3.5" aria-hidden />
                 {meta.label}
@@ -61,7 +61,7 @@ export const FilterControls = memo(function FilterControls() {
       </fieldset>
 
       <fieldset className="space-y-2">
-        <legend className="text-xs font-medium text-slate-400 mb-1 flex items-center gap-1.5">
+        <legend className="text-xs font-medium theme-text-secondary mb-1 flex items-center gap-1.5">
           <CalendarIcon className="w-3.5 h-3.5" aria-hidden /> Date range
         </legend>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -73,7 +73,7 @@ export const FilterControls = memo(function FilterControls() {
               min={minDate}
               max={maxDate}
               onChange={(e) => setDateRange(e.target.value || undefined, filters.dateTo)}
-              className="w-full min-h-[44px] px-3 py-2 rounded-lg bg-slate-900/60 border border-slate-700/60 text-slate-100 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-400/60"
+              className="w-full min-h-[44px] px-3 py-2 rounded-lg theme-surface-muted border theme-border-strong theme-text-primary text-xs focus:outline-none focus:ring-2 focus:ring-indigo-400/60"
             />
           </label>
           <label className="block">
@@ -84,7 +84,7 @@ export const FilterControls = memo(function FilterControls() {
               min={minDate}
               max={maxDate}
               onChange={(e) => setDateRange(filters.dateFrom, e.target.value || undefined)}
-              className="w-full min-h-[44px] px-3 py-2 rounded-lg bg-slate-900/60 border border-slate-700/60 text-slate-100 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-400/60"
+              className="w-full min-h-[44px] px-3 py-2 rounded-lg theme-surface-muted border theme-border-strong theme-text-primary text-xs focus:outline-none focus:ring-2 focus:ring-indigo-400/60"
             />
           </label>
         </div>

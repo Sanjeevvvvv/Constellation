@@ -37,7 +37,7 @@ export const ChapterCard = memo(function ChapterCard({ chapter, initiallyOpen }:
       layout
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`rounded-2xl border bg-gradient-to-br from-slate-900/60 to-slate-900/20 overflow-hidden ${open ? 'border-indigo-500/30' : 'border-slate-800'}`}
+      className={`rounded-2xl border theme-surface overflow-hidden ${open ? 'border-indigo-500/30' : 'theme-border'}`}
     >
       <button
         type="button"
@@ -50,30 +50,30 @@ export const ChapterCard = memo(function ChapterCard({ chapter, initiallyOpen }:
         aria-controls={`chapter-body-${chapter.id}`}
         className="w-full text-left p-4 sm:p-5 flex items-start gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 focus-visible:ring-inset min-h-[44px]"
       >
-        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-300">
+        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-500 dark:text-indigo-300">
           <BookOpen className="w-5 h-5" aria-hidden />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-base sm:text-lg font-semibold text-slate-100">
+            <h3 className="text-base sm:text-lg font-semibold theme-text-primary">
               <Sparkles className="inline w-4 h-4 mr-1.5 text-yellow-400" aria-hidden />
               {chapter.title}
             </h3>
-            <span className="text-xs text-slate-400 font-medium px-2 py-0.5 rounded-full bg-slate-800/60 border border-slate-700/60">
+            <span className="text-xs theme-text-secondary font-medium px-2 py-0.5 rounded-full theme-surface-raised border theme-border-strong">
               {formatRange(chapter.dateRange)}
             </span>
           </div>
-          <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">{chapter.summary}</p>
+          <p className="mt-1.5 text-sm theme-text-secondary leading-relaxed">{chapter.summary}</p>
           <div className="mt-2 flex items-center gap-1.5 flex-wrap">
             {catList.slice(0, 5).map(([cat, n]) => (
-              <span key={cat} className="text-[11px] px-1.5 py-0.5 rounded bg-slate-800/70 text-slate-300 border border-slate-700/50">
+              <span key={cat} className="text-[11px] px-1.5 py-0.5 rounded theme-surface-raised theme-text-secondary border theme-border">
                 {cat} · {n}
               </span>
             ))}
-            <span className="text-[11px] text-slate-500 ml-auto mr-2 tabular-nums">{chapterReceipts.length} entries</span>
+            <span className="text-[11px] theme-text-muted ml-auto mr-2 tabular-nums">{chapterReceipts.length} entries</span>
           </div>
         </div>
-        <div className="flex-shrink-0 self-center text-slate-400 group-hover:text-slate-200">
+        <div className="flex-shrink-0 self-center theme-text-secondary group-hover:text-slate-900 dark:group-hover:text-slate-200">
           {open ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
         </div>
       </button>
@@ -88,7 +88,7 @@ export const ChapterCard = memo(function ChapterCard({ chapter, initiallyOpen }:
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-slate-800/70">
+            <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t theme-border">
               <ul className="space-y-3">
                 {chapterReceipts.map(r => (
                   <li key={r.id}>

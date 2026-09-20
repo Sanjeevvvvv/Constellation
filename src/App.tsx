@@ -30,11 +30,11 @@ function LoadingState() {
             <Sparkles className="w-8 h-8 text-indigo-300 animate-twinkle" />
           </div>
         </div>
-        <div className="inline-flex items-center gap-2 text-slate-300 text-sm">
+        <div className="inline-flex items-center gap-2 theme-text-secondary text-sm">
           <Loader2 className="w-4 h-4 animate-spin" />
           Gathering constellation data…
         </div>
-        <p className="mt-2 text-xs text-slate-500 max-w-sm">
+        <p className="mt-2 text-xs theme-text-muted max-w-sm">
           4,016 receipts are being drawn into moments, chapters, and patterns.
         </p>
       </div>
@@ -49,15 +49,15 @@ function ErrorState({ error, onRetry }: { error: string; onRetry: () => void }) 
         <div className="mx-auto w-14 h-14 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-300 mb-4">
           <AlertTriangle className="w-7 h-7" />
         </div>
-        <h2 className="text-lg font-semibold text-slate-100">Couldn't load your constellation</h2>
-        <p className="mt-2 text-sm text-slate-400">
-          The request to fetch <code className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-xs">/receipts.json</code> failed with:
+        <h2 className="text-lg font-semibold theme-text-primary">Couldn't load your constellation</h2>
+        <p className="mt-2 text-sm theme-text-secondary">
+          The request to fetch <code className="px-1.5 py-0.5 rounded theme-surface-raised theme-text-secondary text-xs">/receipts.json</code> failed with:
         </p>
-        <pre className="mt-2 text-xs text-rose-300 break-all whitespace-pre-wrap bg-slate-950/40 rounded-lg p-2 border border-slate-800">{error}</pre>
+        <pre className="mt-2 text-xs text-rose-300 break-all whitespace-pre-wrap theme-surface-muted rounded-lg p-2 theme-border border">{error}</pre>
         <button
           type="button"
           onClick={onRetry}
-          className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 text-slate-900 font-medium text-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-rose-400/60 min-h-[44px]"
+          className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-slate-900 font-medium text-sm hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-rose-400/60 min-h-[44px]"
         >
           <Zap className="w-4 h-4" /> Try again
         </button>
@@ -79,7 +79,7 @@ function NavTabs() {
   const { view, setView } = useReceiptsContext();
   return (
     <nav aria-label="Primary views" role="tablist" className="relative overflow-x-auto pb-1">
-      <ul className="grid grid-cols-5 min-w-[620px] gap-1.5 p-1.5 rounded-2xl bg-slate-900/60 border border-slate-800">
+      <ul className="grid grid-cols-5 min-w-[620px] gap-1.5 p-1.5 rounded-2xl theme-surface-muted border theme-border">
         {VIEW_TABS.map(t => {
           const Icon = t.icon;
           const active = view === t.id;
@@ -92,7 +92,7 @@ function NavTabs() {
                 id={`tab-${t.id}`}
                 onClick={() => setView(t.id)}
                 title={t.description}
-                className={`relative w-full group flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 min-h-[44px] ${active ? 'bg-gradient-to-br from-indigo-500/20 via-indigo-500/10 to-fuchsia-500/10 text-slate-100 border border-indigo-500/30 shadow-sm shadow-indigo-500/10' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'}`}
+                className={`relative w-full group flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 min-h-[44px] ${active ? 'bg-gradient-to-br from-indigo-500/20 via-indigo-500/10 to-fuchsia-500/10 theme-text-primary border border-indigo-500/30 shadow-sm shadow-indigo-500/10' : 'theme-text-secondary hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/70 dark:hover:bg-slate-800/40 border border-transparent'}`}
               >
                 <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" aria-hidden />
                 <span>{t.label}</span>
@@ -109,20 +109,20 @@ function AppHeader({ dark, toggleDark }: { dark: boolean; toggleDark: () => void
   const { receipts } = useReceiptsContext();
 
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-xl bg-slate-950/60 border-b border-slate-800/70">
+    <header className="sticky top-0 z-30 backdrop-blur-xl theme-surface border-b theme-border">
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-amber-400 p-[2px] shadow-lg shadow-indigo-500/20 flex-shrink-0">
-              <div className="w-full h-full rounded-[14px] bg-slate-950 flex items-center justify-center">
+              <div className="w-full h-full rounded-[14px] theme-surface flex items-center justify-center">
                 <GitBranch className="w-5 h-5 text-indigo-300" />
               </div>
             </div>
             <div className="min-w-0">
-              <h1 className="text-base sm:text-lg font-bold text-slate-100 tracking-tight truncate">
+              <h1 className="text-base sm:text-lg font-bold theme-text-primary tracking-tight truncate">
                 Constellation
               </h1>
-              <p className="text-[11px] sm:text-xs text-slate-500 truncate">
+              <p className="text-[11px] sm:text-xs theme-text-muted truncate">
                 Your life, connected — receipts as points of light
               </p>
             </div>
@@ -135,7 +135,7 @@ function AppHeader({ dark, toggleDark }: { dark: boolean; toggleDark: () => void
               type="button"
               onClick={toggleDark}
               aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="w-10 h-10 rounded-xl bg-slate-900/70 border border-slate-800 text-slate-300 hover:text-slate-100 hover:border-slate-700 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-400/60 min-h-[44px] min-w-[44px]"
+              className="w-10 h-10 rounded-xl theme-surface-muted border theme-border theme-text-secondary hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-400 dark:hover:border-slate-700 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-400/60 min-h-[44px] min-w-[44px]"
             >
               {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
@@ -161,13 +161,13 @@ function AppBody() {
 
       <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-5 lg:gap-6">
         <aside className="lg:sticky lg:top-[88px] lg:self-start">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4">
+          <div className="rounded-2xl border theme-border theme-surface-muted p-4">
             <FilterControls />
-            <div className="mt-5 pt-4 border-t border-slate-800">
-              <div className="text-xs text-slate-500">Currently showing</div>
-              <div className="mt-1 text-lg font-semibold text-slate-100 tabular-nums">
+            <div className="mt-5 pt-4 border-t theme-border">
+              <div className="text-xs theme-text-muted">Currently showing</div>
+              <div className="mt-1 text-lg font-semibold theme-text-primary tabular-nums">
                 {filteredReceipts.length.toLocaleString()}
-                <span className="text-xs text-slate-500 font-normal ml-1">receipts</span>
+                <span className="text-xs theme-text-muted font-normal ml-1">receipts</span>
               </div>
             </div>
           </div>
@@ -181,9 +181,9 @@ function AppBody() {
             {view === 'connections' ? <LazyConnections /> : null}
             {view === 'places' ? <LazyPlaces /> : null}
           </Suspense>
-          <footer className="mt-12 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <footer className="mt-12 pt-6 border-t theme-border text-xs theme-text-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div>
-              <span className="font-semibold text-slate-400">Constellation</span> · A frontend-only constellation of real + synthetic personal receipts.
+              <span className="font-semibold theme-text-secondary">Constellation</span> · A frontend-only constellation of real + synthetic personal receipts.
             </div>
             <div>Synthetic entries are tagged in-line; provenance documented in README.</div>
           </footer>
@@ -215,7 +215,7 @@ function App() {
   }, [dark]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100 antialiased dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
+    <div className="min-h-screen theme-page antialiased">
       <svg className="pointer-events-none fixed inset-0 w-full h-full opacity-[0.08]" aria-hidden>
         <defs>
           <pattern id="stars" x="0" y="0" width="140" height="140" patternUnits="userSpaceOnUse">
