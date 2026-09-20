@@ -20,14 +20,15 @@ interface ReceiptCardProps {
 export const ReceiptCard = memo(function ReceiptCard({ receipt, onSelect, highlight }: ReceiptCardProps) {
   const meta = CATEGORY_META[receipt.category];
   const Icon = meta.icon;
+  const interactive = Boolean(onSelect);
   return (
     <article
       onClick={onSelect}
       onKeyDown={(e) => { if ((e.key === 'Enter' || e.key === ' ') && onSelect) { e.preventDefault(); onSelect(); } }}
-      role="button"
-      tabIndex={0}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
       aria-label={`${meta.label} — ${receipt.title}`}
-      className={`group relative p-3 sm:p-4 rounded-xl border min-h-[44px] transition-all focus:outline-none focus:ring-2 focus:ring-indigo-400/60 focus:-ring-offset-2 focus:ring-offset-slate-950 cursor-pointer hover:-translate-y-0.5 ${meta.bg} ${meta.border} ${highlight ? 'ring-2 ring-yellow-400/60 ring-offset-2 ring-offset-slate-950' : ''}`}
+      className={`group relative p-3 sm:p-4 rounded-xl border min-h-[44px] transition-all ${interactive ? 'cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-400/60 focus:ring-offset-2 focus:ring-offset-slate-950' : ''} ${meta.bg} ${meta.border} ${highlight ? 'ring-2 ring-yellow-400/60 ring-offset-2 ring-offset-slate-950' : ''}`}
     >
       <div className="flex gap-3 sm:gap-4">
         <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${meta.bg} ${meta.text} ${meta.border} border`}>
