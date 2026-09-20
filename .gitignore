@@ -27,7 +27,8 @@ coverage
 archive/
 archive (1)/
 archive (2)/
-receipts.json
+/receipts.json
+!public/receipts.json
 
 # Env
 .env
