@@ -1,10 +1,11 @@
-import { memo } from 'react';
-import { BookMarked, LibraryBig } from 'lucide-react';
+import { memo, useState } from 'react';
+import { ArrowLeft, ArrowRight, BookMarked, LibraryBig } from 'lucide-react';
 import { useReceiptsContext } from '../context/useReceiptsContext';
 import { ChapterCard } from '../components/ChapterCard';
 
 export const StoryMode = memo(function StoryMode() {
   const { chapters, lastViewedChapterId } = useReceiptsContext();
+  const [activeChapter, setActiveChapter] = useState(0);
 
   if (chapters.length === 0) {
     return (
@@ -32,13 +33,39 @@ export const StoryMode = memo(function StoryMode() {
           </p>
         </div>
       </header>
-      <ul className="space-y-4">
-        {chapters.map(c => (
-          <li key={c.id}>
-            <ChapterCard chapter={c} initiallyOpen={c.id === lastViewedChapterId} />
-          </li>
-        ))}
-      </ul>
+      <div className="flex items-center justify-between gap-3 rounded-xl border theme-border theme-surface-muted px-3 py-2">
+        <button
+          type="button"
+          onClick={() => setActiveChapter(index => Math.max(0, index - 1))}
+          disabled={activeChapter === 0}
+          aria-label="Previous chapter"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg theme-text-secondary transition hover:bg-slate-200 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-35 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+        >
+          <ArrowLeft className="h-4 w-4" aria-hidden />
+        </button>
+        <div className="flex items-center gap-2" aria-label={`Chapter ${activeChapter + 1} of ${chapters.length}`}>
+          {chapters.map((chapter, index) => (
+            <button
+              key={chapter.id}
+              type="button"
+              onClick={() => setActiveChapter(index)}
+              aria-label={`Go to chapter ${index + 1}`}
+              aria-current={activeChapter === index ? 'step' : undefined}
+              className={`h-2.5 w-2.5 rounded-full border transition ${activeChapter === index ? 'border-indigo-400 bg-indigo-400 shadow-sm shadow-indigo-400/50' : 'border-slate-400 bg-transparent dark:border-slate-600'}`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => setActiveChapter(index => Math.min(chapters.length - 1, index + 1))}
+          disabled={activeChapter === chapters.length - 1}
+          aria-label="Next chapter"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg theme-text-secondary transition hover:bg-slate-200 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-35 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+        >
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </button>
+      </div>
+      <ChapterCard chapter={chapters[activeChapter]} initiallyOpen={chapters[activeChapter].id === lastViewedChapterId} />
     </div>
   );
 });

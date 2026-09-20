@@ -63,6 +63,9 @@ export const ChapterCard = memo(function ChapterCard({ chapter, initiallyOpen }:
               {formatRange(chapter.dateRange)}
             </span>
           </div>
+          <blockquote className="mt-3 border-l-2 border-indigo-400 pl-3 font-serif text-base italic leading-relaxed text-indigo-700 dark:text-indigo-200">
+            A week of {catList[0]?.[0] ?? 'mixed activity'}, {chapterReceipts.length} moments, {formatRange(chapter.dateRange)}.
+          </blockquote>
           <p className="mt-1.5 text-sm theme-text-secondary leading-relaxed">{chapter.summary}</p>
           <div className="mt-2 flex items-center gap-1.5 flex-wrap">
             {catList.slice(0, 5).map(([cat, n]) => (

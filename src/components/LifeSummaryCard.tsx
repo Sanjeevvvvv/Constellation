@@ -40,6 +40,9 @@ export const LifeSummaryCard = memo(function LifeSummaryCard() {
           <div className="mt-1 truncate text-base font-semibold theme-text-primary" title={category}>{category}</div>
         </div>
       </div>
+      <p className="mt-4 text-sm italic theme-text-secondary">
+        Mostly {category} — busiest in {formatMonth(summary.favoriteMonth)}.
+      </p>
       <div className="my-4 border-t border-dashed border-slate-700/80" aria-hidden />
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs theme-text-secondary">
         <span>Most active month</span>

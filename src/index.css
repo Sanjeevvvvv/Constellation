@@ -72,6 +72,20 @@ body {
   .theme-text-muted {
     color: var(--theme-text-muted);
   }
+  .receipt-paper {
+    background-color: #fffdf5;
+    background-image: radial-gradient(rgba(120, 88, 38, 0.08) 0.6px, transparent 0.6px);
+    background-size: 7px 7px;
+    color: #1e293b;
+  }
+  .dark .receipt-paper {
+    background-color: #18202d;
+    background-image: radial-gradient(rgba(226, 232, 240, 0.07) 0.6px, transparent 0.6px);
+    color: #f1f5f9;
+  }
+  .receipt-divider {
+    border-color: rgba(100, 116, 139, 0.45);
+  }
 }
 
   :root:not(.dark) [class*="bg-slate-"] {

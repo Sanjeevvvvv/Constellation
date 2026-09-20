@@ -28,12 +28,19 @@ export const ReceiptCard = memo(function ReceiptCard({ receipt, onSelect, highli
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}
       aria-label={`${meta.label} — ${receipt.title}`}
-      className={`group relative p-3 sm:p-4 rounded-xl border min-h-[44px] transition-all ${interactive ? 'cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-400/60 focus:ring-offset-2 focus:ring-offset-slate-950' : ''} ${meta.bg} ${meta.border} ${highlight ? 'ring-2 ring-yellow-400/60 ring-offset-2 ring-offset-slate-950' : ''}`}
+      className={`group relative p-4 sm:p-5 rounded-xl border border-amber-900/20 dark:border-slate-600/70 min-h-[44px] transition-all receipt-paper shadow-sm ${interactive ? 'cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-400/60 focus:ring-offset-2 focus:ring-offset-slate-950' : ''} ${highlight ? 'ring-2 ring-yellow-400/60 ring-offset-2 ring-offset-slate-950' : ''}`}
     >
-      <div className="flex gap-3 sm:gap-4">
-        <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${meta.bg} ${meta.text} ${meta.border} border`}>
-          <Icon className="w-5 h-5" aria-hidden />
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="font-mono text-[10px] font-semibold tracking-[0.2em] text-slate-500 dark:text-slate-400">OFFICIAL LIFE RECEIPT</div>
+          <div className="mt-1 font-mono text-[10px] tracking-wide text-slate-500 dark:text-slate-400">RCP-{receipt.id.slice(0, 8)}</div>
         </div>
+        <div className={`flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ${meta.bg} ${meta.text} ${meta.border} border`}>
+          <Icon className="w-4 h-4" aria-hidden />
+        </div>
+      </div>
+      <div className="my-3 border-t border-dashed receipt-divider" aria-hidden />
+      <div className="flex gap-3 sm:gap-4">
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
@@ -47,17 +54,17 @@ export const ReceiptCard = memo(function ReceiptCard({ receipt, onSelect, highli
                     <Sparkles className="w-3 h-3" aria-hidden /> synthetic
                   </span>
                 ) : null}
-                <time className="text-xs theme-text-muted tabular-nums" dateTime={receipt.timestamp}>
+                <time className="font-mono text-xs text-slate-500 dark:text-slate-400 tabular-nums" dateTime={receipt.timestamp}>
                   {formatTime(receipt.timestamp)}
                 </time>
               </div>
-              <h3 className="mt-0.5 text-sm sm:text-base font-medium theme-text-primary truncate">{receipt.title}</h3>
+              <h3 className="mt-0.5 text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 truncate">{receipt.title}</h3>
               {receipt.description ? (
-                <p className="mt-1 text-xs sm:text-sm theme-text-secondary line-clamp-2">{receipt.description}</p>
+                <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2">{receipt.description}</p>
               ) : null}
             </div>
             {typeof receipt.amount === 'number' ? (
-              <div className="flex-shrink-0 flex items-center gap-0.5 theme-text-primary text-sm font-semibold tabular-nums">
+              <div className="flex-shrink-0 flex items-center gap-0.5 font-mono text-slate-900 dark:text-slate-100 text-sm font-semibold tabular-nums">
                 <IndianRupee className="w-3.5 h-3.5" aria-hidden />
                 {receipt.amount.toFixed(receipt.amount % 1 === 0 ? 0 : 2)}
               </div>
